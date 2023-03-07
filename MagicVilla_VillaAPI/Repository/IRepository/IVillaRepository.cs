@@ -5,11 +5,11 @@ namespace MagicVilla_VillaAPI.Repository.IRepository
 {
 	public interface IVillaRepository
 	{
-		Task Create(Villa entity);
-		Task<List<Villa>> ReadAll(Expression<Func<Villa, bool>> filter = null);
-		Task<Villa> Read(Expression<Func<Villa, bool>> filter = null, bool tracked = true);
-		Task Update(Villa entity);
-		Task Delete(Villa entity);
-		Task Save();
+		Task CreateAsync(Villa entity);
+		Task<List<Villa>> ReadAllAsync(Expression<Func<Villa, bool>> filter = null);
+		Task<Villa> ReadAsync(Expression<Func<Villa, bool>> filter = null, bool tracked = true);
+		Task UpdateAsync(Villa entity);
+		Task DeleteAsync(Villa entity);
+		Task SaveAsync();
 	}
 }

@@ -16,13 +16,13 @@ namespace MagicVilla_VillaAPI.Repository
         {
 			_dbo = dbo;
         }
-        public async Task Create(Villa entity)
+        public async Task CreateAsync(Villa entity)
 		{
 			await _dbo.Villas.AddAsync(entity);
 			await Save();
 		}
 
-		public async Task<Villa> Read(Expression<Func<Villa, bool>> filter = null, bool tracked = true)
+		public async Task<Villa> ReadAsync(Expression<Func<Villa, bool>> filter = null, bool tracked = true)
 		{
 			IQueryable<Villa> query = _dbo.Villas;
 
@@ -39,7 +39,7 @@ namespace MagicVilla_VillaAPI.Repository
 			return await query.FirstOrDefaultAsync();
 		}
 
-		public async Task<List<Villa>> ReadAll(Expression<Func<Villa, bool>> filter = null)
+		public async Task<List<Villa>> ReadAllAsync(Expression<Func<Villa, bool>> filter = null)
 		{
 			IQueryable<Villa> query = _dbo.Villas;
 
@@ -51,18 +51,19 @@ namespace MagicVilla_VillaAPI.Repository
 			return await query.ToListAsync();
 		}
 
-		public Task Update(Villa entity)
+		public async Task UpdateAsync(Villa entity)
 		{
-			throw new NotImplementedException();
+			_dbo.Villas.Update(entity);
+			await SaveAsync();
 		}
 
-		public async Task Delete(Villa entity)
+		public async Task DeleteAsync(Villa entity)
 		{
 			_dbo.Villas.Remove(entity);
-			await Save();
+			await SaveAsync();
 		}
 
-		public async Task Save()
+		public async Task SaveAsync()
 		{
 			await _dbo.SaveChangesAsync();
 		}
